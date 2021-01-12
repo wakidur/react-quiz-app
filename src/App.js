@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import PrivateAdminUserRoute from './components/Routes/PrivateAdminUserRoute';
+import PrivateUserRoute from './components/Routes/PrivateUserRoute';
+import Spinner from './components/Spinner/Spinner';
+
+// lazy
+const LogIn = lazy(() => import('./pages/LogIn'));
+const Questions = lazy(() => import('./pages/Questions'));
+const Answers = lazy(() => import('./pages/Answers'));
+const Quiz = lazy(() => import('./pages/Quiz'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Suspense fallback={<Spinner  />}>
+        {/* Auth Route  */}
+        <Route exact path="/" component={LogIn} />
+        {/* Questions  */}
+        <Route exact path="/questions" component={Questions} />
+        {/* Private Admin User Route  */}  
+        <PrivateAdminUserRoute exact path="/admin/quiz" component={Quiz}/>
+        <PrivateAdminUserRoute exact path="/admin/answer" component={Answers}/>
+        {/* Private User Route  */}  
+        <PrivateUserRoute exact path="/user/answer" component={Answers} />
+        </Suspense>
+    </Switch>
   );
 }
 
