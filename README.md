@@ -44,9 +44,6 @@ Instructions: Build a React Quiz App where admin will post questions and users w
 **2. Now start the react  by running the following command :-**
 
 ```
-#Start the server
-yarn run dev
-
 #Start the client side app
 cd react-quiz-app
 
