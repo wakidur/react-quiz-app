@@ -111,7 +111,7 @@ const users = [
   {
     _id: '5c8a1d5b0190b214360dc057',
     name: 'Jonas Schmedtmann',
-    email: 'admin@natours.io',
+    email: 'admin@example.com',
     role: 'admin',
     password: '123456',
   },

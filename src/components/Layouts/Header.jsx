@@ -91,7 +91,7 @@ const Header = () => {
           <div className='d-flex align-items-center'>
             {userInfo && Object.keys(userInfo).length > 0 ? (
               <>
-                <span>{userInfo.email}</span>
+                <span>{userInfo.name}</span>
                 <button
                   onClick={logOut}
                   className='ms-3 btn btn-outline-primary'
