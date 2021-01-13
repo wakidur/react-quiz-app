@@ -1,9 +1,9 @@
-const qBank = [
+export const qBank = [
   {
     question: 'how build the app ?',
     answers: ['vinayak', 'sarthak', 'somil', 'devesh'],
     correct: 'vinayak',
-    questionId: '099099',
+    questionId: '0990996',
   },
   {
     question: 'how build the app ?',
@@ -39,13 +39,13 @@ const qBank = [
     question: 'how build the app ?',
     answers: ['vinayak', 'sarthak', 'somil', 'devesh'],
     correct: 'vinayak',
-    questionId: '099099',
+    questionId: '986709999',
   },
   {
     question: 'how build the app ?',
     answers: ['vinayak', 'sarthak', 'somil', 'devesh'],
     correct: 'vinayak',
-    questionId: '222099',
+    questionId: '222099EAS',
   },
   {
     question: 'how build the app ?',
@@ -75,19 +75,19 @@ const qBank = [
     question: 'how build the app ?',
     answers: ['vinayak', 'sarthak', 'somil', 'devesh'],
     correct: 'vinayak',
-    questionId: '099099',
+    questionId: '09909999343',
   },
   {
     question: 'how build the app ?',
     answers: ['vinayak', 'sarthak', 'somil', 'devesh'],
     correct: 'vinayak',
-    questionId: '099099',
+    questionId: '09909999999999',
   },
   {
     question: 'how build the app ?',
     answers: ['vinayak', 'sarthak', 'somil', 'devesh'],
     correct: 'vinayak',
-    questionId: '099099',
+    questionId: '0990999999943',
   },
   {
     question: 'how build the app ?',

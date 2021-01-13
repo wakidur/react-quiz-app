@@ -4,9 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { getItemFromLocalStorage } from '../../utilities/localStorage';
 
 const PrivateAdminUserRoute = ({ component: Component, ...rest }) => {
-  
   const userInfo = getItemFromLocalStorage('authUserInfo');
-console.log(userInfo);
   return (
     <Route
       {...rest}

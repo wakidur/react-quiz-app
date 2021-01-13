@@ -1,62 +1,82 @@
+/* eslint-disable no-const-assign */
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Layout from '../components/Layouts/Layout';
 
 import { getQuestion } from '../utilities/dataStore';
-import { getItemFromLocalStorage } from '../utilities/localStorage';
+import { getItemFromLocalStorage, setItemToLocalStorage } from '../utilities/localStorage';
 
 const Questions = () => {
+  const history = useHistory();
   const [userInfo, setUserInfo] = useState({});
   const [questionBank, setQuestionBank] = useState([]);
-  const [score, setscore] = useState(0);
-  const [responses, setResponses] = useState(0);
-  // Function to get question from ./question
+  const [answerSheet, setAnswerSheet] = useState([]);
+  // Function to get question 
   const getQuestions = () => {
     getQuestion().then((question) => {
       setQuestionBank(question);
     });
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     getQuestions();
     const user = getItemFromLocalStorage('authUserInfo')
       ? getItemFromLocalStorage('authUserInfo')
       : {};
     setUserInfo(user);
   }, []);
+  // radio Box Handler
+  const radioBoxHandler = (value, item) => {
+    const answerSheetNew = [...answerSheet];
+    const existItem = answerSheetNew.find((x) => x.questionId === item.questionId);
+    if (existItem) {
+       answerSheetNew.map((x) => x.questionId === existItem.questionId ? x.answer=value : x);
+       setAnswerSheet(answerSheetNew);
+       return;
+    } 
+    setAnswerSheet([...answerSheetNew, { ...item, answer: value }]);
+  };
 
-  console.log(questionBank);
-  console.log(userInfo);
+  // Submit Handler
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const answerDB = getItemFromLocalStorage('answerDB') ? getItemFromLocalStorage('answerDB') : [];
+    if (answerSheet.length > 0) {
+      const currentDate = new Date();
+      const newArray = [...answerDB, {userId: userInfo.id, createdAt: currentDate.getTime(), updatedAt: currentDate.getTime(), ...answerSheet}]
+      setItemToLocalStorage('answerDB', newArray )
+      setAnswerSheet([]);
+      e.target.reset();
+      history.push('/user/answer')
+    }
+  }
 
   return (
     <Layout>
       <div className='row'>
         <div className='col-12 col-sm-12 col-md-8 mx-auto'>
-          <form action=''>
+          <form onSubmit={submitHandler}>
             {questionBank && questionBank.length > 0 ? (
-              questionBank.map(({ question, answers, correct, questionId }) => {
+              questionBank.map((item) => {
                 return (
-                  <div key={questionId} className='mb-3'>
-                    <label
-                      htmlFor='exampleFormControlInput1'
-                      className='form-label'
-                    >
-                      {question}
+                  <div key={item.questionId} className='mb-3'>
+                    <label htmlFor='question' className='form-label h5'>
+                      {item.question}
                     </label>
-                    {answers.map((ans, i) => {
+                    {item.answers.map((answer, i) => {
                       return (
-                        <div key={ans} className='form-check'>
+                        <div key={answer} className='form-check'>
                           <input
                             className='form-check-input'
                             type='radio'
-                            name='flexRadioDefault'
-                            id={ans}
+                            name={item.questionId}
+                            id={answer}
+                            value={answer}
+                            onChange={(e) =>
+                              radioBoxHandler(e.target.value, item)
+                            }
                           />
-                          <label
-                            className='form-check-label'
-                            htmlFor='flexRadioDefault1'
-                          >
-                            {ans}
-                          </label>
+                          <label className='form-check-label' htmlFor={answer}>{answer}</label>
                         </div>
                       );
                     })}
@@ -66,6 +86,9 @@ const Questions = () => {
             ) : (
               <p>Questions not found</p>
             )}
+            <button disabled={Object.keys(userInfo).length === 0 && answerSheet.length === 0} className=' btn btn-outline-primary pe-4 ps-4'>
+              Submit
+            </button>
           </form>
         </div>
       </div>

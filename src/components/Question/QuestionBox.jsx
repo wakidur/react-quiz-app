@@ -14,7 +14,6 @@ const QuestionBox = ({ question, options, selected }) => {
             selected(text);
           }}
         >
-          {' '}
           {text}
         </button>
       ))}

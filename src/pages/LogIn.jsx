@@ -10,9 +10,8 @@ const LogIn = ({ location, history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  
-  
   const redirect = location.search ? location.search.split('=')[1] : '/questions';
+  
   const submitHandler = (e) => {
     e.preventDefault();
     if (!email || !password) {
@@ -30,7 +29,6 @@ const LogIn = ({ location, history }) => {
 
   useEffect(() => {
     const userInfo = getItemFromLocalStorage('authUserInfo') ? getItemFromLocalStorage('authUserInfo') : {};
-    console.log(userInfo);
     if (Object.keys(userInfo).length > 0) {
       history.push(redirect);
     }
