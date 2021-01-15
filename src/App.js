@@ -15,15 +15,15 @@ function App() {
     <Switch>
       <Suspense fallback={<Spinner  />}>
         {/* Auth Route  */}
-        <Route exact path="/" component={LogIn} />
+        <Route exact path="/react-quiz-app" component={LogIn} />
         {/* Questions  */}
-        <Route exact path="/questions" component={Questions} />
+        <Route exact path="/react-quiz-app/questions" component={Questions} />
         {/* Private Admin User Route  */}  
-        <PrivateAdminUserRoute exact path="/admin/quiz" component={Quiz}/>
-        <PrivateAdminUserRoute exact path="/admin/answer" component={Answers}/>
+        <PrivateAdminUserRoute exact path="/react-quiz-app/admin/quiz" component={Quiz}/>
+        <PrivateAdminUserRoute exact path="/react-quiz-app/admin/answer" component={Answers}/>
         {/* Private User Route  */}  
-        <PrivateUserRoute exact path="/user/answer" component={Answers} />
-        </Suspense>
+        <PrivateUserRoute exact path="/react-quiz-app/user/answer" component={Answers} />
+      </Suspense>
     </Switch>
   );
 }

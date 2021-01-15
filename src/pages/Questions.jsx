@@ -47,7 +47,10 @@ const Questions = () => {
       setItemToLocalStorage('answerDB', newArray )
       setAnswerSheet([]);
       e.target.reset();
-      history.push('/user/answer')
+      if (userInfo.role === 'admin') {
+        history.push('/react-quiz-app/admin/answer');
+      }
+      history.push('/react-quiz-app/user/answer');
     }
   }
 

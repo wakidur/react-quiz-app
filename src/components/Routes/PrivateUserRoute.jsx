@@ -16,7 +16,7 @@ const PrivateUserRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) =>
-        !userInfo ? <Redirect to='/' /> : <Component {...props} />
+        !userInfo ? <Redirect to='/react-quiz-app' /> : <Component {...props} />
       }
     />
   );

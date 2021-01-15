@@ -18,7 +18,7 @@ const Header = () => {
 
   const logOut = () => {
     clearLocalStorage();
-    history.push('/');
+    history.push('/react-quiz-app');
   };
 
   return (
@@ -44,7 +44,7 @@ const Header = () => {
               <NavLink
                 activeClassName='active'
                 className='nav-link'
-                to='/questions'
+                to='/react-quiz-app/questions'
               >
                 Question
               </NavLink>
@@ -57,7 +57,7 @@ const Header = () => {
                 <NavLink
                   activeClassName='active'
                   className='nav-link'
-                  to='/user/answer'
+                  to='/react-quiz-app/user/answer'
                 >
                   Answer
                 </NavLink>
@@ -71,7 +71,7 @@ const Header = () => {
                   <NavLink
                     activeClassName='active'
                     className='nav-link'
-                    to='/admin/answer'
+                    to='/react-quiz-app/admin/answer'
                   >
                     Answer
                   </NavLink>
@@ -80,7 +80,7 @@ const Header = () => {
                   <NavLink
                     activeClassName='active'
                     className='nav-link'
-                    to='/admin/quiz'
+                    to='/react-quiz-app/admin/quiz'
                   >
                     Quiz
                   </NavLink>

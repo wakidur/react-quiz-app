@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 import AlertMessage from "../components/Message/AlertMessage";
 import { auth } from '../utilities/userAction';
-import { usersDB } from '../utilities/dataStore';
 import { getItemFromLocalStorage } from '../utilities/localStorage';
 
 const LogIn = ({ location, history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const redirect = location.search ? location.search.split('=')[1] : '/questions';
+  const redirect = location.search ? location.search.split('=')[1] : '/react-quiz-app/questions';
   
   const submitHandler = (e) => {
     e.preventDefault();
@@ -19,7 +18,7 @@ const LogIn = ({ location, history }) => {
     }
     if (auth(email, password)) {
       setError('');
-      history.push('/questions');
+      history.push('/react-quiz-app/questions');
     } else {
       setError('User not match!');
       return;
@@ -67,7 +66,7 @@ const LogIn = ({ location, history }) => {
         <button className='w-100 btn btn-lg btn-primary' type='submit'>
           Sign in
         </button>
-        <p className='mt-5 mb-3 text-muted'>&copy; 2017-2021</p>
+        <p className='mt-5 mb-3 text-muted'>&copy; 2020-2021</p>
       </form>
     </main>
   );

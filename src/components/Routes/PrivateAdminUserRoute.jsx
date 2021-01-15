@@ -5,14 +5,15 @@ import { getItemFromLocalStorage } from '../../utilities/localStorage';
 
 const PrivateAdminUserRoute = ({ component: Component, ...rest }) => {
   const userInfo = getItemFromLocalStorage('authUserInfo');
+  console.log(userInfo);
   return (
     <Route
       {...rest}
       render={(props) =>
         !userInfo ? (
-          <Redirect to='/' />
+          <Redirect to='/react-quiz-app' />
         ) : userInfo.role !== 'admin' ? (
-          <Redirect to='/admin/quiz' />
+          <Redirect to='/react-quiz-app/admin/quiz' />
         ) : (
           <Component {...props} />
         )
